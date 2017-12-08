@@ -1,0 +1,260 @@
+/*通用*/
+
+* {
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+
+
+/*清除滚动条*/
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+html,
+body {
+	height: 100%;
+	background-color: #FDF6E3;
+	font-family: "微软雅黑";
+}
+
+div {
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+.component,
+.preview,
+.param,
+.item,
+.basic,
+.advance,
+pre,
+.command{
+	border-radius: 1em;
+}
+/*主容器*/
+
+#container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+
+/*三个分支*/
+
+.component,
+.preview,
+.param {
+	height: 700px;
+	border: solid 2px gray;
+	/*border-radius: 20px;*/
+	margin: 0 20px;
+	border-radius: 1em;
+}
+
+.component,
+.param {
+	width: 350px;
+	min-width: 350px;
+	overflow: hidden;
+}
+
+.preview {
+	width: 800px;
+	min-width: 800px;
+}
+
+/*-------------------组件---------------------*/
+
+
+/*tab*/
+
+.tab,
+.common,
+.form,
+.tools {
+	width: 330px;
+	margin: 0 auto;
+}
+
+.tab {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 30px;
+	margin-top: 60px;
+}
+
+.tab_item {
+	height: 30px;
+	width: 80px;
+	text-align: center;
+	color: gray;
+}
+
+.tab_item:hover {
+	color: darkslategray;
+}
+
+.tab_item.active {
+	color: darkslategray;
+}
+
+
+/*滑动块*/
+
+.slider {
+	height: 3px;
+	background-color: gray;
+	width: 80px;
+	margin-left: 25px;
+}
+
+
+/*功能容器*/
+
+.main {
+	width: 1050px;
+	overflow: hidden;
+}
+
+
+/*功能视图*/
+
+.common,
+.form,
+.tools {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	float: left;
+	margin: 30px 10px 0 10px;
+}
+
+.item {
+	width: 90px;
+	height: 90px;
+	text-align: center;
+	line-height: 90px;
+	color: darkslategray;
+	border: 2px solid gray;
+	margin-top: 20px;
+}
+
+.component {
+	/*display:none;*/
+}
+
+/*-------------------预览---------------------*/
+.preview {
+	/*display: none;*/
+	position: relative;
+}
+.front,.back {
+	height: 100%;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.preview {
+    perspective: 1000;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/*.preview:hover .front {
+    transform: rotateY(180deg);
+}
+.preview:hover .back {
+    transform: rotateY(0deg);
+}*/
+.front, .back {
+    backface-visibility: hidden;
+    transition: 1s;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.front {
+    z-index: 2;
+}
+.back {
+    transform: rotateY(180deg);
+}
+/*-------------------参数---------------------*/
+
+.param {
+	/*display: none;*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.basic,
+.advance {
+	border: 2px solid gray;
+	padding: 15px 10px;
+	box-sizing: border-box;
+	width: 290px;
+}
+
+.basic {
+	height: 35%;
+	margin: 30px;
+}
+
+.advance {
+	height: 50%;
+}
+
+.menu {
+	padding: 5px;
+	text-indent: 5px;
+	color: darkslategray;
+}
+
+.menu:hover {
+	background-color: gray;
+	color: whitesmoke;
+}
+
+.menu>select,
+.menu>input {
+	float: right;
+}
+
+.menu>select {
+	background: white;
+	color: gray;
+	width: 100px;
+	font-size: 16px;
+	border: 2px solid gray;
+	appearance:none;
+  	outline: none;
+}
+pre{
+	height: 65%;
+}
+pre,.command{
+	padding: 25px;
+	/*background: #f6f6f6;*/
+	color:darkslategray;
+	border: 2px solid gray;
+}
+code{
+	font-family:"microsoft yahei";
+}
+.command{
+	height: 15%;
+	margin-top: 20px;
+	
+}
