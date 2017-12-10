@@ -18,7 +18,7 @@
 				<div class="slider"></div>
 				<div class="main">
 					<div class="common">
-						<div class="item h">标题</div>
+						<div class="item h1">标题</div>
 						<div class="item p">文字</div>
 						<div class="item div">DIV</div>
 						<div class="item span">小节</div>
@@ -42,24 +42,73 @@
 					</div>
 				</div>
 			</div>
-			<div class="preview" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<div class="preview">
 				<div class="front">
-					
+					<div class="default" >
+						DIV
+						<input class="default" >
+						<button class="default" >
+						</button>
+					</div>
 				</div>
 				<div class="back">
-					<pre><code></code></pre>
+					<div class="code">
+						<pre><code></code></pre>
+					</div>
 					<div class="command">
 						<input class="command_input" placeholder="控制台:在此输入命令">
 						<button class="command_btn">运行</button>
 					</div>
 				</div>
 			</div>
+			
 			<div class="param">
 				<div class="basic">
-
+					<div class="menu">
+						display
+						<select>
+							<option>default</option>
+							<option>block</option>
+							<option>inline</option>
+							<option>none</option>
+						</select>
+					</div>
+					<div class="menu">
+						position
+						<select>
+							<option>default</option>
+							<option>static</option>
+							<option>relative</option>
+							<option>absolute</option>
+							<option>fixed</option>
+						</select>
+					</div>
+					<div class="menu">
+						<div class="fold">font</div>
+						<div class="menu item">
+							<input type='number'/>
+							<select>
+								<option>default</option>
+								<option>Microsoft Yahei</option>
+								<option>Sans-serif</option>
+								<option>Serif</option>
+							</select>
+						</div>
+					</div>
+					<div class="menu">color</div>
+					<div class="menu">lineHeight</div>
+					<div class="menu">textAligin</div>
 				</div>
 				<div class="advance">
-
+					<div class="menu">width</div>
+					<div class="menu">height</div>
+					<div class="menu">border</div>
+					<div class="menu">background</div>
+					<div class="menu">margin</div>
+					<div class="menu">padding</div>
+					<div class="menu">boxShadow</div>
+					<div class="menu">borderRadius</div>
+					<div class="menu">float</div>
 				</div>
 			</div>
 		</div>

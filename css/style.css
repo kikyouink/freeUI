@@ -6,17 +6,14 @@
 	overflow: auto;
 }
 
-
 /*清除滚动条*/
-
 ::-webkit-scrollbar {
 	display: none;
 }
-
 html,
 body {
 	height: 100%;
-	background-color: #FDF6E3;
+	background-color: #FDF0CC;
 	font-family: "微软雅黑";
 }
 
@@ -26,20 +23,32 @@ div {
 	cursor: default;
 }
 
+/*公共圆角*/
 .component,
 .preview,
 .param,
-.item,
+.main .item,
 .basic,
 .advance,
-pre,
+.code,
 .command{
 	border-radius: 1em;
 }
+/*公共flex*/
+#container,
+.tab,
+.common,
+.form,
+.tools,
+.param,
+.command,
+.menu .item{
+	display: flex ;
+}
+
 /*主容器*/
 
 #container {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
@@ -47,7 +56,15 @@ pre,
 
 
 /*三个分支*/
-
+.component{
+	display: none;
+}
+.preview{
+	/*display: none;*/
+}
+.param{
+	/*display: none;*/
+}
 .component,
 .preview,
 .param {
@@ -70,10 +87,7 @@ pre,
 	min-width: 800px;
 }
 
-/*-------------------组件---------------------*/
-
-
-/*tab*/
+/*-------------------component---------------------*/
 
 .tab,
 .common,
@@ -83,8 +97,7 @@ pre,
 	margin: 0 auto;
 }
 
-.tab {
-	display: flex;
+.tab{
 	justify-content: space-around;
 	align-items: center;
 	height: 30px;
@@ -98,12 +111,8 @@ pre,
 	color: gray;
 }
 
-.tab_item:hover {
-	color: darkslategray;
-}
-
-.tab_item.active {
-	color: darkslategray;
+.tab_item:hover, .tab_item.active{
+	color: rgb(60,122,3);
 }
 
 
@@ -130,7 +139,6 @@ pre,
 .common,
 .form,
 .tools {
-	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	flex-wrap: wrap;
@@ -138,7 +146,7 @@ pre,
 	margin: 30px 10px 0 10px;
 }
 
-.item {
+.main .item{
 	width: 90px;
 	height: 90px;
 	text-align: center;
@@ -152,53 +160,133 @@ pre,
 	/*display:none;*/
 }
 
-/*-------------------预览---------------------*/
+/*-------------------preview---------------------*/
 .preview {
-	/*display: none;*/
 	position: relative;
+	perspective: 1000;
+    transform-style: preserve-3d;
 }
-.front,.back {
+
+.front, .back {
 	height: 100%;
 	width: 100%;
 	padding: 20px;
 	box-sizing: border-box;
-}
-
-.preview {
-    perspective: 1000;
-    transform-style: preserve-3d;
-    position: relative;
-}
-
-/*.preview:hover .front {
-    transform: rotateY(180deg);
-}
-.preview:hover .back {
-    transform: rotateY(0deg);
-}*/
-.front, .back {
     backface-visibility: hidden;
     transition: 1s;
     position: absolute;
     top: 0px;
     left: 0px;
 }
+
 .front {
     z-index: 2;
 }
 .back {
     transform: rotateY(180deg);
 }
-/*-------------------参数---------------------*/
 
-.param {
-	/*display: none;*/
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	box-sizing: border-box;
+div.default{
+	width: 400px;
+	height:300px;
+	border: 2px solid gray;
+	/*line-height: 200px;*/
+	/*text-align: center;*/
+	cursor: move;
+	background-color: #FFF; 
+	border: 1px solid #CCCCCC;  
+	position: absolute;
+}
+.coor{
+	width: 10px;
+	height: 10px; 
+	overflow: hidden; 
+	cursor: se-resize; 
+	position: absolute; 
+	right: 0; 
+	bottom: 0; 
+	background-color: #09C;
+}
+.code{
+	height: 65%;
+	outline: none !important;
+}
+.code,.command{
+	padding: 25px;
+	/*background: #f6f6f6;*/
+	color:darkslategray;
+	border: 2px solid gray;
+}
+code{
+	font-family:"microsoft yahei";
 }
 
+.command{
+	height: 15%;
+	margin-top: 20px;
+	justify-content: space-around;
+	align-items: center;
+	
+}
+button{
+	width: 100px;
+	height: 50px;
+	/*display:block;*/
+	background-color: inherit;
+	color: gray;
+}
+button:hover{
+	background-color: #FDF5E0;
+}
+button:active{
+	background-color: #FDE5A3;
+}
+button,input{
+	font: 15px 微软雅黑;
+	box-sizing: border-box;
+	outline: none;
+	border-radius: 1em;
+	border:2px solid gray;
+	padding: 5px;
+}
+.default{
+	position: absolute;
+}
+input{
+	background-color: #FDF5E0;
+	color: rgb(60,122,3);
+	text-indent: 15px;
+	height: 30px;
+}
+.command_input{
+	width: 400px;
+	height: 50px;
+	
+}
+@keyframes shake
+{
+	from {
+		/*border:none;*/
+		box-shadow: 0px 0px 5px blueviolet;
+	}
+	to {
+		/*border:none;*/
+		box-shadow: 0px 0px 20px blueviolet;
+	}
+}
+.default.active{
+	animation:shake 1.5s linear infinite alternate;
+}
+
+/*-------------------param---------------------*/
+
+.param,.menu .item{
+	flex-direction: column;
+	box-sizing: border-box;
+}
+.param{
+	align-items: center;
+}
 .basic,
 .advance {
 	border: 2px solid gray;
@@ -216,23 +304,26 @@ pre,
 	height: 50%;
 }
 
-.menu {
+.menu{
 	padding: 5px;
 	text-indent: 5px;
 	color: darkslategray;
+	border-radius: 7px;
 }
 
-.menu:hover {
+.menu:hover{
 	background-color: gray;
 	color: whitesmoke;
 }
 
 .menu>select,
 .menu>input {
+	display: block;
 	float: right;
 }
 
 .menu>select {
+	display: block;
 	background: white;
 	color: gray;
 	width: 100px;
@@ -241,20 +332,29 @@ pre,
 	appearance:none;
   	outline: none;
 }
-pre{
-	height: 65%;
+.fold{
+	height: 100%;
 }
-pre,.command{
-	padding: 25px;
-	/*background: #f6f6f6;*/
-	color:darkslategray;
-	border: 2px solid gray;
+.menu.item{
+	/*display: none;*/
+	justify-content: space-around;
+	align-items: flex-end;
 }
-code{
-	font-family:"microsoft yahei";
+.menu.item>input,.menu.item>select{
+	margin: 5px;
 }
-.command{
-	height: 15%;
-	margin-top: 20px;
-	
+select{
+	-webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+}
+option{
+	background-color: #FDF0CC;
+	color: gray;
+	-webkit-appearance:none; /* Safari 和 Chrome */
+    appearance:none;
+}
+option:hover{
+	background-color: gray;
+	color:white;
+	-webkit-appearance:none;
 }
