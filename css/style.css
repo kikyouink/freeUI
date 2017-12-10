@@ -42,7 +42,7 @@ div {
 .tools,
 .param,
 .command,
-.menu .item{
+.menu.item{
 	display: flex ;
 }
 
@@ -257,6 +257,7 @@ input{
 	color: rgb(60,122,3);
 	text-indent: 15px;
 	height: 30px;
+	width:80px;
 }
 .command_input{
 	width: 400px;
@@ -274,6 +275,7 @@ input{
 		box-shadow: 0px 0px 20px blueviolet;
 	}
 }
+
 .default.active{
 	animation:shake 1.5s linear infinite alternate;
 }
@@ -309,52 +311,38 @@ input{
 	text-indent: 5px;
 	color: darkslategray;
 	border-radius: 7px;
+	line-height: 30px;
+	overflow: visible;
+	position: relative;
 }
 
 .menu:hover{
-	background-color: gray;
-	color: whitesmoke;
+	background-color: #fdf5e0;
+	/*color: gray;*/
 }
-
-.menu>select,
-.menu>input {
-	display: block;
+.menu .select {
 	float: right;
+	width: 80px;
+	height: 26px;
+  	border: 2px solid gray;
+  	position: absolute;
+  	top:5px;
+  	right: 5px;
+  	text-align: center;
+  	border-radius:10px;
+}
+ul{
+	width: 80px;
+	/*text-align: center;*/
+}
+ul>li{
+	/*text-align: center;*/
+}
+ul>li:hover{
+	background-color:#fdf5e0;
+	color: darkslategray;
+}
+.menu input{
+	display: inline-block;
 }
 
-.menu>select {
-	display: block;
-	background: white;
-	color: gray;
-	width: 100px;
-	font-size: 16px;
-	border: 2px solid gray;
-	appearance:none;
-  	outline: none;
-}
-.fold{
-	height: 100%;
-}
-.menu.item{
-	/*display: none;*/
-	justify-content: space-around;
-	align-items: flex-end;
-}
-.menu.item>input,.menu.item>select{
-	margin: 5px;
-}
-select{
-	-webkit-appearance:none; /* Safari 和 Chrome */
-    appearance:none;
-}
-option{
-	background-color: #FDF0CC;
-	color: gray;
-	-webkit-appearance:none; /* Safari 和 Chrome */
-    appearance:none;
-}
-option:hover{
-	background-color: gray;
-	color:white;
-	-webkit-appearance:none;
-}
