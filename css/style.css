@@ -305,44 +305,58 @@ input{
 .advance {
 	height: 50%;
 }
-
+.fold{
+	overflow: hidden;
+	display: none;
+	height: auto;
+}
 .menu{
+	height: 30px;
+	overflow: visible;
 	padding: 5px;
+}
+.menu,.fold{
 	text-indent: 5px;
 	color: darkslategray;
 	border-radius: 7px;
 	line-height: 30px;
-	overflow: visible;
 	position: relative;
 }
 
 .menu:hover{
-	background-color: #fdf5e0;
+	background-color: #FDE5A3;
 	/*color: gray;*/
 }
-.menu .select {
-	float: right;
+.menu .select_box{
 	width: 80px;
 	height: 26px;
   	border: 2px solid gray;
-  	position: absolute;
   	top:5px;
   	right: 5px;
+  	line-height: 26px;
+  	float: right;
+}
+.menu .select_box,.menu .option{
   	text-align: center;
   	border-radius:10px;
 }
+
+.menu .option{
+	position: absolute;
+	right: 5px;
+	margin-top: 5px;
+	height: 0px;
+	box-shadow: 0 0 5px;
+}
 ul{
 	width: 80px;
-	/*text-align: center;*/
-}
-ul>li{
-	/*text-align: center;*/
 }
 ul>li:hover{
-	background-color:#fdf5e0;
+	background-color:#FDE5A3;
 	color: darkslategray;
 }
 .menu input{
 	display: inline-block;
+	float: right;
 }
 
