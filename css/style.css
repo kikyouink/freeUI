@@ -41,8 +41,7 @@ div {
 .form,
 .tools,
 .param,
-.command,
-.menu.item{
+.command{
 	display: flex ;
 }
 
@@ -57,7 +56,7 @@ div {
 
 /*三个分支*/
 .component{
-	display: none;
+	/*display: none;*/
 }
 .preview{
 	/*display: none;*/
@@ -305,25 +304,32 @@ input{
 .advance {
 	height: 50%;
 }
-.fold{
+.fold,.menul{
 	overflow: hidden;
-	display: none;
 	height: auto;
 }
-.menu{
-	height: 30px;
+.fold{
+	display: none;
+}
+.menu,.menul{
 	overflow: visible;
 	padding: 5px;
+	position: relative;
 }
-.menu,.fold{
+.menu,.fold,.menul{
 	text-indent: 5px;
 	color: darkslategray;
 	border-radius: 7px;
 	line-height: 30px;
-	position: relative;
 }
-
-.menu:hover{
+.menul .menu{
+	padding: 0;
+}
+.fold .menu.item{
+	padding: 5px 0 5px 0;
+	position: static;
+}
+.menu:hover,.menul:hover{
 	background-color: #FDE5A3;
 	/*color: gray;*/
 }
@@ -341,17 +347,21 @@ input{
   	border-radius:10px;
 }
 
-.menu .option{
+.option{
 	position: absolute;
 	right: 5px;
 	margin-top: 5px;
-	height: 0px;
+	/*height: 0px;*/
 	box-shadow: 0 0 5px;
 }
-ul{
+.option{
 	width: 80px;
+	height: auto;
+	background: #FDF0CC;
+	z-index: 100;
+	display: none;
 }
-ul>li:hover{
+.option>li:hover{
 	background-color:#FDE5A3;
 	color: darkslategray;
 }
