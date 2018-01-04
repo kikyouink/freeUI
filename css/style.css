@@ -347,6 +347,16 @@ input{
   	border-radius:10px;
 }
 
+.ss{
+	width: 30px;;
+	float: right;
+	text-align: center;
+	transition: 0.75s;
+	
+}
+.ss.rotate{
+	transform: rotate(90deg);
+}
 .option{
 	position: absolute;
 	right: 5px;

@@ -93,9 +93,9 @@ function drop(ev) {
 		putParam: function(area) {
 			for(var i in area) {
 				if($.type(area[i]) == 'object') {
-					console.log(area[i]);
-					var menul = $(this).putDiv('menul');
+					var menul = $(this).putDiv('menul ' + i);
 					var menu = menul.putDiv('menu ' + i, i);
+					var ss=menu.put('span','ss','›');
 					var fold = menul.putDiv('fold');
 					for(var j in area[i]) {
 						if($.type(area[i][j]) == 'number') {
@@ -265,7 +265,9 @@ function drop(ev) {
 		$('*').on('click', function(e) {
 			return false;
 		})
+		//菜单点击
 		$('.menu').on('click', function(e) {
+			$(this).find('.ss').toggleClass('rotate');
 			$(this).siblings('.fold').slideToggle();
 		})
 		//Toggle下拉菜单
@@ -280,6 +282,7 @@ function drop(ev) {
 				slide='down';
 			}
 		});
+		//悬浮选项
 		$('li').hover(function() {
 			if(moving) return;
 			var active = $('.default.active');
@@ -291,6 +294,7 @@ function drop(ev) {
 			var name = menu.attr('class').split(' ')[1];
 			var value=$(this).text();
 			console.log(value);
+			//区分普通菜单和折叠菜单
 			if(type=='menu'){
 				active.css(name,value);
 			}
