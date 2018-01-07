@@ -329,7 +329,7 @@ function drop(ev) {
 			var value=$(this).val();
 			if($(this).val()=='') value=0;
 			if(type=='menu'){
-				active.css(name,value);
+				active.css(name,value+'px');
 				menu.attr('value',value);
 				
 			}
