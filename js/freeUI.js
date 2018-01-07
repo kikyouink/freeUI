@@ -41,7 +41,6 @@ function drop(ev) {
 	//		}
 	//		return null;
 	//	}
-	var moving;
 	//----------------JQ扩展--------------------	
 	$.fn.extend({
 		print: function(str) {
@@ -65,8 +64,8 @@ function drop(ev) {
 			$(this).append(div);
 			return div;
 		},
-		putInput: function(val) {
-			var input = $(this).put('input');
+		putInput: function(className,val) {
+			var input = $(this).put('input',className);
 			input.attr('type', 'number');
 			input.val(val);
 		},
@@ -76,7 +75,8 @@ function drop(ev) {
 		},
 		putMenu: function(array) {
 			var select_box = $(this).putDiv('select_box');
-			var select = select_box.putDiv('select', 'default');
+			var select = select_box.putDiv('select');
+			var span=select.put('span', 'label','default');
 			var ul = select.put('ul', 'option');
 			for(var i = 0; i < array.length; i++) {
 				var option = ul.put('li', '', array[i]);
@@ -100,7 +100,7 @@ function drop(ev) {
 					for(var j in area[i]) {
 						if($.type(area[i][j]) == 'number') {
 							var menuItem = fold.putDiv('menu item ' + j, j);
-							menuItem.putInput(area[i][j]);
+							menuItem.putInput('number',area[i][j]);
 						} else if(area[i][j] == 'color') {
 							var menuItem = fold.putDiv('menu item ' + j, j);
 							menuItem.putColor();
@@ -112,7 +112,7 @@ function drop(ev) {
 				} else {
 					var menu = $(this).putDiv('menu ' + i, i);
 					if($.type(area[i]) == 'number') {
-						menu.putInput(area[i]);
+						menu.putInput('number',area[i]);
 					} else if(area[i] == 'color') {
 						menu.putColor();
 					} else if($.type(area[i]) == 'array') {
@@ -138,8 +138,6 @@ function drop(ev) {
 			'ondrop': 'drop(event)',
 			'ondragover': 'allowDrop(event)'
 		});
-		$('.code').attr('contenteditable', 'true');
-		//		$('.menu.item').hide();
 		$('.tab_item').click(function() {
 			$(this).addClass('active');
 			$(this).siblings().removeClass('active');
@@ -214,10 +212,14 @@ function drop(ev) {
 				$.extend(document, {
 					'move': true,
 					'call_down': function(e) {
+						var width=Math.max(30, e.pageX - posix.x + posix.w);
+						var height=Math.max(30, e.pageY - posix.y + posix.h);
 						$box.css({
-							'width': Math.max(30, e.pageX - posix.x + posix.w),
-							'height': Math.max(30, e.pageY - posix.y + posix.h)
+							'width': width,
+							'height': height
 						});
+						$('.width').find('input').val(width);
+						$('.height').find('input').val(height);
 					}
 				});
 				return false;
@@ -256,13 +258,14 @@ function drop(ev) {
 			$('.front').css('transform', 'rotateY(0deg)');
 			$('.back').css('transform', 'rotateY(180deg)');
 		});
-
+		$('.code').attr('contenteditable', 'true');
 		//----------------param--------------------	
 		var param;
 		$('.basic').putParam(style_basic);
 		$('.advance').putParam(style_advance);
 		//彻底解决冒泡问题
 		$('*').on('click', function(e) {
+			console.log($(this));
 			return false;
 		})
 		//菜单点击
@@ -270,26 +273,27 @@ function drop(ev) {
 			$(this).find('.ss').toggleClass('rotate');
 			$(this).siblings('.fold').slideToggle();
 		})
-		//Toggle下拉菜单
-		var slide='down';
-		$('.select').click(function() {
-			if(slide=='down'){
-				$(this).find('ul').slideDown();
-				slide='up';
-			}
-			else{
-				$(this).find('ul').slideUp();
-				slide='down';
-			}
+		//手风琴下拉菜单
+		$('.label').click(function() {
+			var ul=$(this).siblings('ul');
+			var Ul=$('.select.active').find('ul').not(ul);
+			Ul.slideUp();
+			Ul.parent().removeClass('active');
+			ul.slideToggle();
+			ul.parent().toggleClass('active');
+			
 		});
 		//悬浮选项
 		$('li').hover(function() {
-			if(moving) return;
 			var active = $('.default.active');
-			if(!active.length) return;
+			if(!active.length){
+				console.log('当前没有活跃元素');
+				return;
+			}
 			var menu = $(this).getParent(4);
 			var select_box = $(this).getParent(3);
 			var select = $(this).getParent(2);
+			
 			var type = menu.attr('class').split(' ')[0];
 			var name = menu.attr('class').split(' ')[1];
 			var value=$(this).text();
@@ -297,16 +301,44 @@ function drop(ev) {
 			//区分普通菜单和折叠菜单
 			if(type=='menu'){
 				active.css(name,value);
+				var label=select.find('.label');
+				label.text(value);
+				label.attr('value',value);
+				
 			}
 			else{
 				var style='';
 				console.log('fold');
+				
 			}
 		});
 		$('li').click(function() {
 			var ul = $(this).parent();
 			ul.slideUp();
 			return false;
+		})
+		$('.number').on('input propertychange',function(){
+			var active = $('.default.active');
+			if(!active.length){
+				console.log('当前没有活跃元素');
+				return;
+			}
+			var menu=$(this).parent();
+			var type = menu.attr('class').split(' ')[0];
+			var name = menu.attr('class').split(' ')[1];
+			var value=$(this).val();
+			if($(this).val()=='') value=0;
+			if(type=='menu'){
+				active.css(name,value);
+				menu.attr('value',value);
+				
+			}
+			else{
+				var style='';
+				console.log('fold');
+				
+			}
+			
 		})
 	});
 }());

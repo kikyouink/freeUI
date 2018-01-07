@@ -69,7 +69,6 @@ div {
 .param {
 	height: 700px;
 	border: solid 2px gray;
-	/*border-radius: 20px;*/
 	margin: 0 20px;
 	border-radius: 1em;
 }
@@ -333,16 +332,17 @@ input{
 	background-color: #FDE5A3;
 	/*color: gray;*/
 }
-.menu .select_box{
-	width: 80px;
-	height: 26px;
+.select_box{
+	box-sizing: border-box;
+	width: 100px;
+	height: 30px;
   	border: 2px solid gray;
   	top:5px;
   	right: 5px;
   	line-height: 26px;
   	float: right;
 }
-.menu .select_box,.menu .option{
+.select_box,.option{
   	text-align: center;
   	border-radius:10px;
 }
@@ -357,15 +357,15 @@ input{
 .ss.rotate{
 	transform: rotate(90deg);
 }
+span{
+	
+}
 .option{
 	position: absolute;
 	right: 5px;
 	margin-top: 5px;
-	/*height: 0px;*/
 	box-shadow: 0 0 5px;
-}
-.option{
-	width: 80px;
+	width: 100px;
 	height: auto;
 	background: #FDF0CC;
 	z-index: 100;

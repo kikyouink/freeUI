@@ -1,9 +1,9 @@
 var style_basic={
-	display:['block','inline','none'],
+	display:['block','inline','inline-block','none'],
 	position:['static','relative','absolute','fixed'],
 	font:{
 		fontSize:15,
-		fontFamily:['Microsoft Yahei','Sans-serif','Serif'],
+		fontFamily:['微软雅黑','Sans-serif','Serif'],
 	},
 	color:'color',
 	lineHeight:15,
