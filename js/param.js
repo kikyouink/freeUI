@@ -7,12 +7,12 @@ var style_basic={
 	},
 	color:'color',
 	lineHeight:15,
-	textAligin:['left','center','right'],
+	'text-align':['left','center','right','justify'],
 	
 };
 var style_advance={
-	width:200,
-	height:400,
+	width:400,
+	height:300,
 	margin:0,
 	padding:0,
 	float:['none','left','right'],
@@ -26,8 +26,8 @@ var style_advance={
 		backgroundSize:['cover','contain'],
 		backgroundImage:'src',
 	},
-	boxShadow:0,
-	borderRadius:0,	
+	'box-shadow':0,
+	'border-radius':0,	
 };
 var style_flex={
 	flexDirection:['row','row-reverse','column','column-reverse'],

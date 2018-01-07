@@ -1,0 +1,10 @@
+rewusheng:{
+	audio:2,
+	...
+}
+//翻译
+rewusheng:'武圣',
+rewusheng_info:'...'
+rewusheng:{
+	inherit:'wusheng'
+}

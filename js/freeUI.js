@@ -300,6 +300,7 @@ function drop(ev) {
 			console.log(value);
 			//区分普通菜单和折叠菜单
 			if(type=='menu'){
+				console.log(name+'  '+value);
 				active.css(name,value);
 				var label=select.find('.label');
 				label.text(value);
@@ -329,6 +330,7 @@ function drop(ev) {
 			var value=$(this).val();
 			if($(this).val()=='') value=0;
 			if(type=='menu'){
+				console.log(name+'  '+value);
 				active.css(name,value+'px');
 				menu.attr('value',value);
 				
