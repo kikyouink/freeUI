@@ -1,7 +1,7 @@
 /*通用*/
 
 * {
-	margin: 0;
+	/*margin: 0;*/
 	padding: 0;
 	overflow: auto;
 }
@@ -67,7 +67,7 @@ div {
 .component,
 .preview,
 .param {
-	height: 700px;
+	height: 720px;
 	border: solid 2px gray;
 	margin: 0 20px;
 	border-radius: 1em;
@@ -82,7 +82,7 @@ div {
 
 .preview {
 	width: 800px;
-	min-width: 800px;
+	min-width: 405px;
 }
 
 /*-------------------component---------------------*/
@@ -161,7 +161,7 @@ div {
 /*-------------------preview---------------------*/
 .preview {
 	position: relative;
-	perspective: 1000;
+	/*perspective: 1000;*/
     transform-style: preserve-3d;
 }
 
@@ -208,17 +208,12 @@ div.default{
 .code{
 	height: 65%;
 	outline: none !important;
+	color:#A70A84;
 }
 .code,.command{
 	padding: 25px;
-	/*background: #f6f6f6;*/
-	color:darkslategray;
 	border: 2px solid gray;
 }
-code{
-	font-family:"microsoft yahei";
-}
-
 .command{
 	height: 15%;
 	margin-top: 20px;
@@ -277,7 +272,15 @@ input{
 .default.active{
 	animation:shake 1.5s linear infinite alternate;
 }
-
+.tag{
+	color: blueviolet;
+}
+.sign{
+	color:gray;
+}
+.attr{
+	color:rgb(60,122,3);
+}
 /*-------------------param---------------------*/
 
 .param,.menu .item{

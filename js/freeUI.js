@@ -121,7 +121,37 @@ function drop(ev) {
 				}
 
 			}
-		}
+		},
+		htmlcode:function(o){
+			var that = $(this);
+			//获取HTML内容
+			var str = that.html();
+			var mark = /[&<>]/g, mark_val = {"&":"&amp;","<":"&lt;",">":"&gt;"};
+			str = str.replace(mark, function(c){
+				return mark_val[c];
+			});
+			console.log(str);
+			//缩进、处理内联样式
+			str=str.trim().replace(/&lt;div class="coor"&gt;&lt;\/div&gt;/g,'')
+			.replace(/style="(.*?)"/g, '')
+			.replace(/&lt;(?!\/)(.*?)&gt;/g,function(f){
+				return "<blockquote>"+f;
+			}).replace(/&lt;\/(.*?)&gt;/g,function(b){
+				return b+"</blockquote>";
+			});
+			str=str.replace(/&lt;(.*?)&gt;/g,function(tag){
+				//属性上色
+				tag=tag.replace(/\w+(?==)/g,function(attr){
+					return "<span class='attr'>"+attr+"</span>";
+				});
+				//引号上色
+				tag=tag.replace(/("(.*?)")/g,function(sign){
+					return "<span class='sign'>"+sign+"</span>";
+				});
+				return "<span class='tag'>"+tag+"</span>"
+			});
+			o.html(str);	
+		},	   
 	});
 
 	//----------------系统流程--------------------
@@ -218,6 +248,7 @@ function drop(ev) {
 							'width': width,
 							'height': height
 						});
+						//动态显示值
 						$('.width').find('input').val(width);
 						$('.height').find('input').val(height);
 					}
@@ -239,17 +270,7 @@ function drop(ev) {
 
 		//双击翻转查看代码
 		$('.front').dblclick(function(e) {
-			var ss = $('.front').html();
-			//HTML标签转义
-			var a = ss.trim()
-				.replace(/<div class="coor"><\/div\>/g, '')
-				.replace(/style=\"(.*?)\"/g, '')
-				.replace(/></g, "&gt;&#10;&lt;")
-				.replace(/</g, "&#10;&lt;")
-				.replace(/>/g, "&gt;&#10;&#09")
-				.replace(/"/g, "&quot")
-				.replace(/ /g, "&nbsp;")
-			var code = $('.back').find('code').html(a);
+			$('.front').htmlcode($('.code'));
 			$('.front').css('transform', 'rotateY(180deg)');
 			$('.back').css('transform', 'rotateY(0deg)');
 			return false;
@@ -258,7 +279,6 @@ function drop(ev) {
 			$('.front').css('transform', 'rotateY(0deg)');
 			$('.back').css('transform', 'rotateY(180deg)');
 		});
-		$('.code').attr('contenteditable', 'true');
 		//----------------param--------------------	
 		var param;
 		$('.basic').putParam(style_basic);
