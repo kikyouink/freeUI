@@ -139,12 +139,14 @@ function drop(ev) {
 			}).replace(/&lt;\/(.*?)&gt;/g,function(b){
 				return b+"</blockquote>";
 			});
+			//标签上色
 			str=str.replace(/&lt;(.*?)&gt;/g,function(tag){
 				//属性上色
 				tag=tag.replace(/\w+(?==)/g,function(attr){
 					return "<span class='attr'>"+attr+"</span>";
 				});
 				//引号上色
+				//巧妙让span的class全部使用单引号，再次替换引号内容即可互不干扰
 				tag=tag.replace(/("(.*?)")/g,function(sign){
 					return "<span class='sign'>"+sign+"</span>";
 				});
@@ -317,10 +319,8 @@ function drop(ev) {
 			var type = menu.attr('class').split(' ')[0];
 			var name = menu.attr('class').split(' ')[1];
 			var value=$(this).text();
-			console.log(value);
 			//区分普通菜单和折叠菜单
 			if(type=='menu'){
-				console.log(name+'  '+value);
 				active.css(name,value);
 				var label=select.find('.label');
 				label.text(value);
