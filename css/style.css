@@ -12,9 +12,11 @@
 }
 html,
 body {
+	margin: 0;
 	height: 100%;
-	background-color: #FDF0CC;
 	font-family: "微软雅黑";
+	color:#424e67;
+	background-color: #eff4f8;
 }
 
 div {
@@ -41,16 +43,49 @@ div {
 .form,
 .tools,
 .param,
+.handle,
 .command{
 	display: flex ;
 }
 
 /*主容器*/
-
+#header{
+	/*position: absolute;*/
+	height: 62px;
+	width: 100%;
+	border: 1px solid #d8dfea;
+	position: relative;
+}
+.nav{
+	width:100%;
+	height: 40px;
+	margin-top: -20px;
+	top:50%;
+	position: absolute;
+}
+.title{
+	font-size: 30px;
+	margin-left: 30px;
+}
+.header_menu{
+	width: auto;
+	display: inline-block;
+	margin-left: 50px;
+}
+.header_menu .item{
+	font-size: 20px;
+	margin: 0px 20px;
+	/*line-height: 25px;*/
+}
+.header_menu .item.active,.header_menu .item:hover{
+	color: #3b8cff;
+}
 #container {
 	justify-content: center;
-	align-items: center;
-	height: 100%;
+	align-items: flex-end;
+	height: 750px;
+	box-sizing: border-box;
+	/*margin: 20px;*/
 }
 
 
@@ -68,9 +103,10 @@ div {
 .preview,
 .param {
 	height: 720px;
-	border: solid 2px gray;
+	border: 1px solid #d8dfea;
 	margin: 0 20px;
 	border-radius: 1em;
+	background-color: white;
 }
 
 .component,
@@ -84,7 +120,6 @@ div {
 	width: 800px;
 	min-width: 405px;
 }
-
 /*-------------------component---------------------*/
 
 .tab,
@@ -106,11 +141,10 @@ div {
 	height: 30px;
 	width: 80px;
 	text-align: center;
-	color: gray;
 }
 
 .tab_item:hover, .tab_item.active{
-	color: rgb(60,122,3);
+	color: #3b8cff;
 }
 
 
@@ -118,7 +152,7 @@ div {
 
 .slider {
 	height: 3px;
-	background-color: gray;
+	background-color:#3b8cff;
 	width: 80px;
 	margin-left: 25px;
 }
@@ -149,11 +183,12 @@ div {
 	height: 90px;
 	text-align: center;
 	line-height: 90px;
-	color: darkslategray;
-	border: 2px solid gray;
+	border: 1px solid #d8dfea;
 	margin-top: 20px;
 }
-
+.common .item:hover{
+	background-color: #e4e9ec;
+}
 .component {
 	/*display:none;*/
 }
@@ -187,11 +222,9 @@ div {
 div.default{
 	width: 400px;
 	height:300px;
-	border: 2px solid gray;
-	/*line-height: 200px;*/
-	/*text-align: center;*/
+	background-color: white;
+	border: 1px solid #d8dfea;
 	cursor: move;
-	background-color: #FFF; 
 	border: 1px solid #CCCCCC;  
 	position: absolute;
 }
@@ -212,7 +245,7 @@ div.default{
 }
 .code,.command{
 	padding: 25px;
-	border: 2px solid gray;
+	border: 1px solid #d8dfea;
 }
 .command{
 	height: 15%;
@@ -221,33 +254,28 @@ div.default{
 	align-items: center;
 	
 }
-button{
+button,button:active{
 	width: 100px;
 	height: 50px;
-	/*display:block;*/
-	background-color: inherit;
-	color: gray;
+	color: white;
+	background-color: #3b8cff;
 }
 button:hover{
-	background-color: #FDF5E0;
-}
-button:active{
-	background-color: #FDE5A3;
+	background-color: #77afff;
 }
 button,input{
 	font: 15px 微软雅黑;
 	box-sizing: border-box;
 	outline: none;
 	border-radius: 1em;
-	border:2px solid gray;
+	border:none;
 	padding: 5px;
 }
 .default{
 	position: absolute;
 }
 input{
-	background-color: #FDF5E0;
-	color: rgb(60,122,3);
+	background-color:#e4e9ec ;
 	text-indent: 15px;
 	height: 30px;
 	width:80px;
@@ -260,11 +288,9 @@ input{
 @keyframes shake
 {
 	from {
-		/*border:none;*/
 		box-shadow: 0px 0px 5px blueviolet;
 	}
 	to {
-		/*border:none;*/
 		box-shadow: 0px 0px 20px blueviolet;
 	}
 }
@@ -292,7 +318,7 @@ input{
 }
 .basic,
 .advance {
-	border: 2px solid gray;
+	border: 1px solid #d8dfea;
 	padding: 15px 10px;
 	box-sizing: border-box;
 	width: 290px;
@@ -320,7 +346,6 @@ input{
 }
 .menu,.fold,.menul{
 	text-indent: 5px;
-	color: darkslategray;
 	border-radius: 7px;
 	line-height: 30px;
 }
@@ -332,14 +357,13 @@ input{
 	position: static;
 }
 .menu:hover,.menul:hover{
-	background-color: #FDE5A3;
-	/*color: gray;*/
+	background-color: #eff4f8;
 }
 .select_box{
 	box-sizing: border-box;
 	width: 100px;
 	height: 30px;
-  	border: 2px solid gray;
+  	border: 1px solid #d8dfea;
   	top:5px;
   	right: 5px;
   	line-height: 26px;
@@ -370,16 +394,37 @@ span{
 	box-shadow: 0 0 5px;
 	width: 100px;
 	height: auto;
-	background: #FDF0CC;
+	background-color: #eff4f8;
 	z-index: 100;
 	display: none;
 }
 .option>li:hover{
-	background-color:#FDE5A3;
-	color: darkslategray;
+	background-color:#e4e9ec;
 }
 .menu input{
 	display: inline-block;
 	float: right;
 }
-
+/*-------------------杂项---------------------*/
+.alert{
+	display: none;
+	position: absolute;
+	z-index: 999;
+}
+.alert.full{
+	background-color: rgba(0,0,0,0.5);
+	top:0;
+	left:0;
+}
+.alert.normal{
+	width: 200px;
+	height: 50px;
+	top:200px;
+	left:50%;
+	margin-left: -100px;
+	font-size: 20px;
+	padding: 10px;
+	line-height: 50px;
+	box-shadow: 0 0 5px;
+	text-align: center;
+}

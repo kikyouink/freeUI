@@ -41,14 +41,35 @@ function drop(ev) {
 	//		}
 	//		return null;
 	//	}
+	var ui={
+		clear:function(){
+			$('.front').empty();
+		},
+		showAlert:function(value,full){
+			full=full||true;
+			var alert;
+			if(full==false){
+				alert=$('body').putDiv('alert full');
+				alert.css("height",$(document).height());     
+        		alert.css("width",$(document).width());
+			}
+			else{
+				alert=$('body').putDiv('alert normal',value);
+			}
+			alert.fadeIn();
+			setTimeout(function(){
+				alert.fadeOut();
+			},1500)
+		}
+	};
 	//----------------JQ扩展--------------------	
 	$.fn.extend({
 		print: function(str) {
 			$(this).text(str)
 		},
 		put: function(type, className, innerHTML) {
-			if(!className) className = '';
-			if(!innerHTML) innerHTML = '';
+			className = className||'';
+			innerHTML = innerHTML||'';
 			var node = $("<" + type + "></" + type + ">");
 			node.addClass(className);
 			node.text(innerHTML);
@@ -56,8 +77,8 @@ function drop(ev) {
 			return node;
 		},
 		putDiv: function(className, innerHTML) {
-			if(!className) className = '';
-			if(!innerHTML) innerHTML = '';
+			className = className||'';
+			innerHTML = innerHTML||'';
 			var div = $("<div></div>");
 			div.addClass(className);
 			div.text(innerHTML);
@@ -146,7 +167,7 @@ function drop(ev) {
 					return "<span class='attr'>"+attr+"</span>";
 				});
 				//引号上色
-				//巧妙让span的class全部使用单引号，再次替换引号内容即可互不干扰
+				//设置span的class全部使用单引号，再次替换引号内容即可互不干扰
 				tag=tag.replace(/("(.*?)")/g,function(sign){
 					return "<span class='sign'>"+sign+"</span>";
 				});
@@ -160,6 +181,11 @@ function drop(ev) {
 	$(document).ready(function() {
 		$(document).on("contextmenu", function(e) {
 			return false;
+		});
+		//----------------header-----------------------	
+		$('.header_menu .item').click(function(){
+			ui.showAlert('功能仍在开发中...',false);
+			console.log('alert');
 		});
 		//----------------component--------------------	
 		$('.main .item').attr({
@@ -272,6 +298,10 @@ function drop(ev) {
 
 		//双击翻转查看代码
 		$('.front').dblclick(function(e) {
+			var node=$('.code')[0];
+//			for(var i in node.style){
+//				console.log(i+':'+node.style[i]);
+//			}
 			$('.front').htmlcode($('.code'));
 			$('.front').css('transform', 'rotateY(180deg)');
 			$('.back').css('transform', 'rotateY(0deg)');
