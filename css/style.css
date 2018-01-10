@@ -254,14 +254,17 @@ div.default{
 	align-items: center;
 	
 }
-button,button:active{
+button{
 	width: 100px;
 	height: 50px;
 	color: white;
-	background-color: #3b8cff;
+	background-color:#337ab7;
 }
 button:hover{
-	background-color: #77afff;
+	background-color: #286090;
+}
+button:active{
+	background-color: #337ab7;
 }
 button,input{
 	font: 15px 微软雅黑;
@@ -375,17 +378,16 @@ input{
 }
 
 .ss{
-	width: 30px;;
+	width: 30px;
 	float: right;
 	text-align: center;
 	transition: 0.75s;
+	font-size:30px;
+	line-height: 25px;
 	
 }
 .ss.rotate{
 	transform: rotate(90deg);
-}
-span{
-	
 }
 .option{
 	position: absolute;
@@ -406,25 +408,61 @@ span{
 	float: right;
 }
 /*-------------------杂项---------------------*/
-.alert{
-	display: none;
+@keyframes slide
+{
+	0%{}
+	30%{top:64px}
+	70%{top:64px}
+	100%{top:-110px}
+}
+@keyframes slideDown
+{
+	from {}
+	to {
+		top:64px;
+	}
+}
+@keyframes slideUp
+{
+	from {
+		top:64px;
+	}
+	to {
+		top:-130px;
+	}
+}
+.alert,.confrim{
 	position: absolute;
 	z-index: 999;
-}
-.alert.full{
-	background-color: rgba(0,0,0,0.5);
-	top:0;
-	left:0;
-}
-.alert.normal{
-	width: 200px;
-	height: 50px;
-	top:200px;
+	width: 300px;
 	left:50%;
-	margin-left: -100px;
+	margin-left: -150px;
 	font-size: 20px;
-	padding: 10px;
 	line-height: 50px;
 	box-shadow: 0 0 5px;
 	text-align: center;
+	background-color: inherit;
+	top:-110px;
+}
+.alert{
+	height: 100px;
+	animation:slide 4s linear;
+}
+.confrim{
+	height: 130px;
+	animation:slideDown 1.5s linear forwards;
+}
+.confrim.active{
+	animation:slideUp 1.5s linear;
+}
+.buttonGroup{
+	position: absolute;
+	bottom: 0px;
+	width:100%;
+	height: 50px;
+}
+.yes,.no{
+	width:50%;
+	height: 100%;
+	border-radius: 0 !important;
 }

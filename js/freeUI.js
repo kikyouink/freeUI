@@ -45,21 +45,24 @@ function drop(ev) {
 		clear:function(){
 			$('.front').empty();
 		},
-		showAlert:function(value,full){
-			full=full||true;
-			var alert;
-			if(full==false){
-				alert=$('body').putDiv('alert full');
-				alert.css("height",$(document).height());     
-        		alert.css("width",$(document).width());
-			}
-			else{
-				alert=$('body').putDiv('alert normal',value);
-			}
-			alert.fadeIn();
+		showAlert:function(text){
+			var alert=$('body').putDiv('alert normal',text);
 			setTimeout(function(){
-				alert.fadeOut();
-			},1500)
+				alert.remove();
+			},4000)
+		},
+		showConfrim:function(text,callback){
+			var confrim=$('body').putDiv('confrim',text);
+			var buttonGroup=confrim.putDiv('buttonGroup');
+			var yes=buttonGroup.put('button','yes','确认');
+			var no=buttonGroup.put('button','no','取消');
+			$('.yes,.no').click(function(){
+				confrim.addClass('active');
+				setTimeout(function(){
+					confrim.remove();
+				},1500);
+				if($(this).hasClass('yes')) callback();
+			});
 		}
 	};
 	//----------------JQ扩展--------------------	
@@ -183,9 +186,13 @@ function drop(ev) {
 			return false;
 		});
 		//----------------header-----------------------	
-		$('.header_menu .item').click(function(){
-			ui.showAlert('功能仍在开发中...',false);
-			console.log('alert');
+		$('.new').click(function(){
+			var bool=ui.showConfrim('是否清空预览界面？',function(){
+				 ui.clear();
+			});
+		});
+		$('.share,.explore,.download').click(function(){
+			ui.showAlert('功能仍在开发中...');
 		});
 		//----------------component--------------------	
 		$('.main .item').attr({
