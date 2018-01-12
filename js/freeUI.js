@@ -146,7 +146,7 @@ function drop(ev) {
 
 			}
 		},
-		htmlcode:function(o){
+		htmlcode:function(target){
 			var that = $(this);
 			//获取HTML内容
 			var str = that.html();
@@ -176,7 +176,7 @@ function drop(ev) {
 				});
 				return "<span class='tag'>"+tag+"</span>"
 			});
-			o.html(str);	
+			target.html(str);	
 		},	   
 	});
 

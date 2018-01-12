@@ -47,8 +47,7 @@ div {
 .command{
 	display: flex ;
 }
-
-/*主容器*/
+/*头部*/
 #header{
 	/*position: absolute;*/
 	height: 62px;
@@ -63,23 +62,40 @@ div {
 	top:50%;
 	position: absolute;
 }
+.title,.header_menu,.person,.notebook{
+	height: 100%;
+	display: inline-block;
+	width: auto;
+	line-height: 40px;
+}
 .title{
 	font-size: 30px;
 	margin-left: 30px;
 }
 .header_menu{
-	width: auto;
-	display: inline-block;
 	margin-left: 50px;
+	font-size: 20px;
+	/*line-height: 40px;*/
 }
 .header_menu .item{
-	font-size: 20px;
 	margin: 0px 20px;
-	/*line-height: 25px;*/
 }
 .header_menu .item.active,.header_menu .item:hover{
 	color: #3b8cff;
 }
+.person{
+	font-size: 20px;
+	float: right;
+	margin: 0 50px;
+}
+.headImg{
+	width:40px;
+	height: 40px;
+	vertical-align: middle;
+	border-radius: 100%;
+}
+
+/*主容器*/
 #container {
 	justify-content: center;
 	align-items: flex-end;
@@ -417,7 +433,9 @@ input{
 }
 @keyframes slideDown
 {
-	from {}
+	from {
+		top:-130px;
+	}
 	to {
 		top:64px;
 	}
@@ -446,14 +464,14 @@ input{
 }
 .alert{
 	height: 100px;
-	animation:slide 4s linear;
+	animation:slide 2s cubic-bezier(0.35,-0.5,0.5,1.35);
 }
 .confrim{
 	height: 130px;
-	animation:slideDown 1.5s linear forwards;
+	animation:slideDown 0.6s cubic-bezier(0.35,-0.5,0.5,1.35) forwards;
 }
 .confrim.active{
-	animation:slideUp 1.5s linear;
+	animation:slideUp 0.6s cubic-bezier(0.35,-0.5,0.5,1.35) forwards;
 }
 .buttonGroup{
 	position: absolute;
