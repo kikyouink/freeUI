@@ -1,0 +1,49 @@
+/*通用*/
+
+* {
+	/*margin: 0;*/
+	padding: 0;
+	overflow: auto;
+}
+
+/*清除滚动条*/
+::-webkit-scrollbar {
+	display: none;
+}
+html,
+body {
+	margin: 0;
+	height: 100%;
+	font-family: "微软雅黑";
+	color:#424e67;
+	background-color: #eff4f8;
+}
+
+div {
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+button,input{
+	font: 15px 微软雅黑;
+	outline: none;
+	border-radius: 10px;
+	border:none;
+}
+input{
+	background-color:#e4e9ec ;
+	text-indent: 15px;
+	padding: 2px;
+}
+button{
+	padding: 10px;
+	background-color:#337ab7;
+	color: white;
+}
+button:hover{
+	background-color: #286090;
+}
+button:active{
+	background-color: #337ab7;
+}
+

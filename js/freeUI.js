@@ -94,8 +94,7 @@ function drop(ev) {
 			input.val(val);
 		},
 		putColor: function() {
-			var input = $(this).put('input');
-			input.attr('type', 'color');
+			console.log('do nothing')
 		},
 		putMenu: function(array) {
 			var select_box = $(this).putDiv('select_box');
@@ -147,14 +146,13 @@ function drop(ev) {
 			}
 		},
 		htmlcode:function(target){
-			var that = $(this);
-			//获取HTML内容
-			var str = that.html();
+			//获取HTML源码
+			var str = $(this).html();
+			//批量转义HTML特殊符号
 			var mark = /[&<>]/g, mark_val = {"&":"&amp;","<":"&lt;",">":"&gt;"};
 			str = str.replace(mark, function(c){
 				return mark_val[c];
 			});
-			console.log(str);
 			//缩进、处理内联样式
 			str=str.trim().replace(/&lt;div class="coor"&gt;&lt;\/div&gt;/g,'')
 			.replace(/style="(.*?)"/g, '')
