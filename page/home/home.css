@@ -48,7 +48,6 @@
 }
 form{
 	flex-direction: column;
-	/*padding: 20px 40px;*/
 	box-sizing: border-box;
 	justify-content: space-around;
 	align-items: center;
