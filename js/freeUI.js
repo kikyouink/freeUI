@@ -1,26 +1,3 @@
-var type;
-var source;
-
-function allowDrop(ev) {
-	ev.preventDefault();
-	source = ev.target;
-}
-
-function drag(ev) {
-	type = ev.target.className.split(' ')[1];
-	console.log(type);
-}
-
-function drop(ev) {
-	console.log(ev.target + 'drop');
-	ev.preventDefault();
-	if(type == 'div') {
-		var div = $(source).putDiv('default', '示例文字DIV');
-		div.putDiv('coor');
-	} else
-		var node = $(source).put(type, 'default');
-
-}
 (function() {
 	'use strict'
 	//----------------数组方法--------------------
