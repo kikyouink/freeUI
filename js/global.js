@@ -35,7 +35,8 @@ var ui={
 	showConfrim:function(text,callback){
 		var confrim=$('body').putDiv('confrim',text);
 		var buttonGroup=confrim.putDiv('buttonGroup');
-		buttonGroup.put('button','yes','确认').put('button','no','取消');
+		var yes=buttonGroup.put('button','yes','确认');
+		var no=buttonGroup.put('button','no','取消');
 		$('.yes,.no').click(function(){
 			confrim.addClass('active');
 			setTimeout(function(){

@@ -16,7 +16,7 @@
 			});
 		});
 		$('.sumbit').click(function(){
-			//防止多次提交
+			//设置禁用防止多次提交
 			var that=$(this);
 			var text=that.text();
 			that.attr('disabled','true').text('提交中...');
@@ -25,7 +25,7 @@
 			function back(){
 				that.removeAttr('disabled').text(text);
 			}
-			//先检查正则相关问题，再进行相应处理
+			//先检查正则相关问题，根据返回值进行相应处理
 			var result=sys.checkReg([username,password]);
 			switch(result){
 				case 0:ui.showAlert('用户名及密码不能为空',back);break;
