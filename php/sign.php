@@ -16,12 +16,12 @@
     }
     // 使用 sql 创建数据表
     
-    $create = "CREATE TABLE IF NOT EXISTS user (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-        name VARCHAR(30) NOT NULL,
-        nickname VARCHAR(30),
-        password VARCHAR(50) NOT NULL,
-        reg_date TIMESTAMP
+    $create = "create table if not exists user (
+        id int(6) unsigned auto_increment primary key, 
+        name varchar(30) not null,
+        nickname varchar(30),
+        password varchar(50) not null,
+        reg_date timestamp
     )";
 
     if (mysqli_query($conn, $create)) {
@@ -39,7 +39,7 @@
 		echo '用户名已注册，请登录';
 	}
 	else{
-		$insert = "INSERT INTO user (name, password)
+		$insert = "insert into user (name, password)
 	    VALUES ('$name', '$words')";
 	
 	    if (mysqli_query($conn, $insert)) {

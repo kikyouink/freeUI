@@ -15,17 +15,25 @@
 				marginLeft: number2
 			});
 		});
-		$('.sumbit').click(function(){		
-			var username=$(this).siblings('.username').val();
-			var password=$(this).siblings('.password').val();
-			switch(sys.check([username,password])){
-				case 0:ui.showAlert('用户名及密码均需6位以上');break;
-				case true:ui.showAlert('用户名需为字母数字组合');break;
+		$('.sumbit').click(function(){
+			//防止多次提交
+			var that=$(this);
+			var text=that.text();
+			that.attr('disabled','true').text('提交中...');
+			var username=that.siblings('.username').val();
+			var password=that.siblings('.password').val();
+			function back(){
+				that.removeAttr('disabled').text(text);
+			}
+			//先检查正则相关问题，再进行相应处理
+			var result=sys.checkReg([username,password]);
+			switch(result){
+				case 0:ui.showAlert('用户名及密码不能为空',back);break;
+				case 1:ui.showAlert('用户名及密码均需6位以上',back);break;
+				case true:ui.showAlert('用户名需为字母数字组合',back);break;
 				case false:
-					if($(this).text()=='注册'){
-						sys.sign([username,password]);
-					}
-					else sys.login([username,password]);
+					if(text=='注册') sys.sign([username,password],back);
+					else sys.login([username,password],back);
 				break;
 			}
 		});

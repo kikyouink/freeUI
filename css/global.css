@@ -46,6 +46,9 @@ button:hover{
 button:active{
 	background-color: #337ab7;
 }
+button[disabled]{
+	background-color: #85b4dd;
+}
 /*-------------------提示---------------------*/
 @keyframes slide
 {

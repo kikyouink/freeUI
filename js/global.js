@@ -35,8 +35,7 @@ var ui={
 	showConfrim:function(text,callback){
 		var confrim=$('body').putDiv('confrim',text);
 		var buttonGroup=confrim.putDiv('buttonGroup');
-		var yes=buttonGroup.put('button','yes','确认');
-		var no=buttonGroup.put('button','no','取消');
+		buttonGroup.put('button','yes','确认').put('button','no','取消');
 		$('.yes,.no').click(function(){
 			confrim.addClass('active');
 			setTimeout(function(){
@@ -46,8 +45,13 @@ var ui={
 		});
 	}
 };
+var page={
+	jump:function(href){
+		location.href=href;
+	}
+}
 var sys={
-	check:function(array,mode){
+	checkReg:function(array,mode){
 		var reg;
 		mode=mode||'';
 		switch(mode){
@@ -56,12 +60,22 @@ var sys={
 			default:reg=/\W+/g;break;
 		}
 		for(var i=0;i<array.length;i++){
-			if(array[i].length<6) return 0;
+			if(array[i].length==0) return 0;
+		}
+		for(var i=0;i<array.length;i++){
+			if(array[i].length<6) return 1;
 		}
 		return reg.test(array[0]);
 	},
-	post:function(array,url,msg){
-		var callback;
+	sign:function(array,callback){
+		var url="http://localhost/php/sign.php/";
+		sys.post(array,url,'注册成功',callback);
+	},
+	login:function(array,callback){
+		var url="http://localhost/php/login.php/";
+		sys.post(array,url,'登录成功',callback);
+	},
+	post:function(array,url,msg,callback){
 		var obj={
 			username:array[0],
 			password:array[1]
@@ -70,20 +84,13 @@ var sys={
 			console.log(data);
 			if(data==msg){
 				callback=function(){
-					location.href='../../index.html';
+					page.jump('../../index.html');
 				}
 			}
 			ui.showAlert(data,callback);
 		},'text');
 	},
-	sign:function(array){
-		var url="http://localhost/php/sign.php/";
-		sys.post(array,url,'注册成功');
-	},
-	login:function(array){
-		var url="http://localhost/php/login.php/";
-		sys.post(array,url,'登录成功');
-	}
+	
 }
 $.fn.extend({
 	put: function(type, className, innerHTML) {
