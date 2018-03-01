@@ -1,5 +1,5 @@
 (function() {
-	'use strict'
+	//'use strict'
 	//----------------数组方法--------------------
 	//搜寻
 	//	Array.prototype.find = function(value) {
@@ -21,7 +21,7 @@
 	//----------------JQ扩展--------------------	
 	$.fn.extend({
 		print: function(str) {
-			$(this).text(str)
+			$(this).text(str);
 		},
 		putInput: function(className,val) {
 			var input = $(this).put('input',className);
@@ -29,7 +29,7 @@
 			input.val(val);
 		},
 		putColor: function() {
-			console.log('do nothing')
+			console.log('do nothing');//暂时废弃
 		},
 		putMenu: function(array) {
 			var select_box = $(this).putDiv('select_box');
@@ -80,9 +80,9 @@
 
 			}
 		},
-		htmlcode:function(target){
+		htmlCode:function(target){
 			//获取HTML源码
-			var str = $(this).html();
+			var str = target.html();
 			//批量转义HTML特殊符号
 			var mark = /[&<>]/g, mark_val = {"&":"&amp;","<":"&lt;",">":"&gt;"};
 			str = str.replace(mark, function(c){
@@ -109,7 +109,7 @@
 				});
 				return "<span class='tag'>"+tag+"</span>"
 			});
-			target.html(str);	
+			$(this).html(str);	
 		},	   
 	});
 
@@ -238,11 +238,7 @@
 
 		//双击翻转查看代码
 		$('.front').dblclick(function(e) {
-			var node=$('.code')[0];
-//			for(var i in node.style){
-//				console.log(i+':'+node.style[i]);
-//			}
-			$('.front').htmlcode($('.code'));
+			$('.code').htmlCode($('.front'));
 			$('.front').css('transform', 'rotateY(180deg)');
 			$('.back').css('transform', 'rotateY(0deg)');
 			return false;

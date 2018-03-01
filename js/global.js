@@ -52,38 +52,31 @@ var page={
 	}
 }
 var sys={
-	checkReg:function(array,mode){
+	checkReg:function(obj,mode){
+		for (let i in obj) {
+			if(obj[i].length==0) return 0;
+			if(obj[i].length<6||obj[i].length>15) return 1;
+		}
 		var reg;
 		mode=mode||'';
 		switch(mode){
-			case 'all':return 1;break;
-			case 'remix':reg=/[^A-Za-z0-9_\-\u4e00-\u9fa5]+/g;break;
+			case 'remix':reg=/[^A-Za-z0-9_\-\u4e00-\u9fa5]+/g;break;//包括汉字
 			default:reg=/\W+/g;break;
 		}
-		for(var i=0;i<array.length;i++){
-			if(array[i].length==0) return 0;
-		}
-		for(var i=0;i<array.length;i++){
-			if(array[i].length<6) return 1;
-		}
-		return reg.test(array[0]);
+		return reg.test(obj.username);
 	},
-	sign:function(array,callback){
+	sign:function(obj,callback){
 		var url="http://localhost/php/sign.php/";
-		sys.post(array,url,'注册成功',callback);
+		sys.post(obj,url,'注册成功',callback);
 	},
-	login:function(array,callback){
+	login:function(obj,callback){
 		var url="http://localhost/php/login.php/";
-		sys.post(array,url,'登录成功',callback);
+		sys.post(obj,url,'登录成功',callback);
 	},
-	post:function(array,url,msg,callback){
-		var obj={
-			username:array[0],
-			password:array[1]
-		}
+	post:function(obj,url,prompt,callback){
 		$.post(url,obj,function(data){
 			console.log(data);
-			if(data==msg){
+			if(data==prompt){
 				callback=function(){
 					page.jump('../../index.html');
 				}
@@ -91,7 +84,6 @@ var sys={
 			ui.showAlert(data,callback);
 		},'text');
 	},
-	
 }
 $.fn.extend({
 	put: function(type, className, innerHTML) {

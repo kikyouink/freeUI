@@ -1,7 +1,6 @@
 (function(){
 	'use strict'	
 	$(document).ready(function() {
-		$('input').attr('maxlength','12');
 		$('.tab_item').click(function() {
 			$(this).addClass('active');
 			$(this).siblings().removeClass('active');
@@ -15,6 +14,7 @@
 				marginLeft: number2
 			});
 		});
+		
 		$('.sumbit').click(function(){
 			//设置禁用防止多次提交
 			var that=$(this);
@@ -22,18 +22,22 @@
 			that.attr('disabled','true').text('提交中...');
 			var username=that.siblings('.username').val();
 			var password=that.siblings('.password').val();
-			function back(){
+			var userInfo={
+				username:username,
+				password:password
+			}
+			function callback(){
 				that.removeAttr('disabled').text(text);
 			}
 			//先检查正则相关问题，根据返回值进行相应处理
-			var result=sys.checkReg([username,password]);
+			var result=sys.checkReg(userInfo);
 			switch(result){
-				case 0:ui.showAlert('用户名及密码不能为空',back);break;
-				case 1:ui.showAlert('用户名及密码均需6位以上',back);break;
-				case true:ui.showAlert('用户名需为字母数字组合',back);break;
+				case 0:ui.showAlert('用户名及密码不能为空',callback);break;
+				case 1:ui.showAlert('用户名及密码均需6-15位以内',callback);break;
+				case true:ui.showAlert('用户名需为字母数字组合',callback);break;
 				case false:
-					if(text=='注册') sys.sign([username,password],back);
-					else sys.login([username,password],back);
+					if(text=='注册') sys.sign(userInfo);
+					else sys.login(userInfo);
 				break;
 			}
 		});

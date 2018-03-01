@@ -1,7 +1,7 @@
 .tab,form{
 	display: flex;
 }
-#ls{
+#container{
 	width: 360px;
 	height: 500px;
 	background-color: white;
@@ -26,7 +26,7 @@
 	width: 80px;
 	text-align: center;
 }
-.tab_item.active{
+.tab_item.active,.tab_item:hover{
 	color: #3b8cff;
 }
 .slider {

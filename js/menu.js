@@ -1,3 +1,8 @@
+var component={
+	common:['h1','p','div','span','a','img','button'],
+	form:['input','textarea','radio','checkbox','select'],
+	tools:['flash','navs','tabs'],
+};
 var style_basic={
 	display:['block','inline','inline-block','none'],
 	position:['static','relative','absolute','fixed'],
@@ -7,7 +12,7 @@ var style_basic={
 	},
 	color:'color',
 	lineHeight:15,
-	'text-align':['left','center','right','justify'],
+	textAlign:['left','center','right'],
 	
 };
 var style_advance={
