@@ -10,7 +10,6 @@ var style_basic={
 		fontSize:15,
 		fontFamily:['微软雅黑','Sans-serif','Serif'],
 	},
-	color:'color',
 	lineHeight:15,
 	textAlign:['left','center','right'],
 	
@@ -24,12 +23,9 @@ var style_advance={
 	border:{
 		borderWidth:0,
 		borderStyle:['solid','double','groove'],
-		boderColor:'color',
 	},
 	background:{
-		backgroundColor:'color',
 		backgroundSize:['cover','contain'],
-		backgroundImage:'src',
 	},
 	'box-shadow':0,
 	'border-radius':0,	

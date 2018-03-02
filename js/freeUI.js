@@ -28,9 +28,6 @@
 			input.attr('type', 'number');
 			input.val(val);
 		},
-		putColor: function() {
-			console.log('do nothing');//暂时废弃
-		},
 		putMenu: function(array) {
 			var select_box = $(this).putDiv('select_box');
 			var select = select_box.putDiv('select');
@@ -50,30 +47,27 @@
 		},
 		putParam: function(area) {
 			for(var i in area) {
-				if($.type(area[i]) == 'object') {
-					var menul = $(this).putDiv('menul ' + i);
-					var menu = menul.putDiv('menu ' + i, i);
-					var ss=menu.put('span','ss','›');
-					var fold = menul.putDiv('fold');
+				if($.type(area[i]) == 'object') {//二级菜单
+					var menul = $(this).putDiv('menul ' + i);//整体容器
+					var menu = menul.putDiv('menu ' + i, i);//显示出来的部分
+					var fold = menul.putDiv('fold');//隐藏的子菜单容器
+					var ss=menu.put('span','ss','›');//旋转符号
 					for(var j in area[i]) {
-						if($.type(area[i][j]) == 'number') {
+						if($.type(area[i][j]) == 'number') {//输入框
 							var menuItem = fold.putDiv('menu item ' + j, j);
 							menuItem.putInput('number',area[i][j]);
-						} else if(area[i][j] == 'color') {
-							var menuItem = fold.putDiv('menu item ' + j, j);
-							menuItem.putColor();
-						} else {
+						}
+						else{
 							var menuItem = fold.putDiv('menu item ' + j, j);
 							menuItem.putMenu(area[i][j]);
 						}
 					}
-				} else {
+				} else {//一级菜单
 					var menu = $(this).putDiv('menu ' + i, i);
 					if($.type(area[i]) == 'number') {
 						menu.putInput('number',area[i]);
-					} else if(area[i] == 'color') {
-						menu.putColor();
-					} else if($.type(area[i]) == 'array') {
+					}
+					else{
 						menu.putMenu(area[i]);
 					}
 				}

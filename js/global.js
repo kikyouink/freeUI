@@ -94,10 +94,11 @@ $.fn.extend({
 		node.text(innerHTML);
 		$(this).append(node);
 		return node;
+		
 	},
 	putDiv: function(className, innerHTML) {
 		className = className||'';
-		innerHTML = innerHTML||'';
+		innerHTML = innerHTML||'';		
 		var div = $("<div></div>");
 		div.addClass(className);
 		div.text(innerHTML);
