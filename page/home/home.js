@@ -36,8 +36,8 @@
 				case 1:ui.showAlert('用户名及密码均需6-15位以内',callback);break;
 				case true:ui.showAlert('用户名需为字母数字组合',callback);break;
 				case false:
-					if(text=='注册') sys.sign(userInfo);
-					else sys.login(userInfo);
+					if(text=='注册') sys.sign(userInfo,callback);
+					else sys.login(userInfo,callback);
 				break;
 			}
 		});

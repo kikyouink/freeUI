@@ -318,7 +318,6 @@
 			else{
 				var style='';
 				console.log('fold');
-				
 			}
 			
 		})

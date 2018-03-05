@@ -76,11 +76,10 @@ var sys={
 	post:function(obj,url,prompt,callback){
 		$.post(url,obj,function(data){
 			console.log(data);
-			if(data==prompt){
-				callback=function(){
-					page.jump('../../index.html');
-				}
+			function jump(){
+				page.jump('../../index.html');
 			}
+			if(data==prompt) callback=jump;
 			ui.showAlert(data,callback);
 		},'text');
 	},
