@@ -1,4 +1,5 @@
 # freeUI
+[在线预览](https://q2578443177.github.io/freeUI)
 ## 主页面：
 ### index.html
 **组件区**(左侧)：<br>可以拖拽组件到中间预览区；<br>
